@@ -1190,6 +1190,10 @@ proc search(self: var SearchManager, depth, ply: int, alpha, beta: Score, isPV, 
                     # Search failed low, hash move is singular: explore it deeper
                     inc(singular)
                     when not isPV:
+
+                        if depth < 10:
+                            inc(depth)
+                        
                         # We restrict greater extensions to non-pv nodes. The consensus
                         # on this seems to be that it avoids search explosions (it can
                         # apparently be done in pv nodes with much tighter margins)
